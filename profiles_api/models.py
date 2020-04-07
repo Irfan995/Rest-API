@@ -10,7 +10,7 @@ class UserProfileManager(BaseUserManager):
     Manager for user profiles
     '''
 
-    def create_user(self, emai, name, password=None):
+    def create_user(self, email, name, password=None):
         '''
         Create a new user profile
         '''
@@ -18,14 +18,14 @@ class UserProfileManager(BaseUserManager):
             raise ValueError('User must have an email address')
 
         email = self.normalize_email(email)
-        user = self.model(emai=email, name=name)
+        user = self.model(email=email, name=name)
 
         user.set_password(password)
         user.save(using=self._db)
 
         return user
 
-    def create_superuser(self, emai, name, password):
+    def create_superuser(self, email, name, password):
         '''
         Create and save a new superuser with given details
         '''
